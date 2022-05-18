@@ -8,7 +8,6 @@ export default class Live extends Cell {
 
   tick(elements: Cell[][], position: Position): Cell {
     const liveNeighbors = this.countLiveNeighbors(elements, position);
-    console.log(liveNeighbors);
 
     if (liveNeighbors == 2 || liveNeighbors == 3) {
       return this;

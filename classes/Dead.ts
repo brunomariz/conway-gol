@@ -21,7 +21,6 @@ export default class Dead extends Cell {
         if (i > -1 && i < elements.length && j > -1 && j < elements[i].length) {
           if (elements[i][j] instanceof Live) {
             count += 1;
-            console.log("found");
           }
         }
       }

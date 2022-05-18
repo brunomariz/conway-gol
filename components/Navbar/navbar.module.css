@@ -1,0 +1,7 @@
+.baseButton {
+  @apply p-1 px-2 m-1 font-semibold;
+}
+
+.outlineButton {
+  @apply border-2 border-gray-900 text-gray-900;
+}

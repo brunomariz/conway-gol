@@ -2,7 +2,6 @@
   @apply grid;
   display: grid;
   grid-template-columns: repeat(45, minmax(0, 1fr));
-  padding: 5rem;
 }
 
 .unselectable {

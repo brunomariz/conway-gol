@@ -18,7 +18,6 @@ function CellGrid({ elements, setElements, elementFactory }: Props) {
     } else {
       newElements[position.x][position.y] = new Dead();
     }
-    console.log(newElements);
 
     setElements(newElements);
   };

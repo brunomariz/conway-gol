@@ -6,10 +6,26 @@ import Live from "../classes/Live";
 import System from "../classes/System";
 import Cell from "../classes/Cell";
 import CellGrid from "../components/CellGrid/CellGrid";
+import { loadDefaultErrorComponents } from "next/dist/server/load-components";
+import Navbar from "../components/Navbar/Navbar";
 
 const Home: NextPage = () => {
-  const [system, setSystem] = useState(new System(10, 45));
+  const [system, setSystem] = useState(new System(18, 45));
   const [activeElement, setActiveElement] = useState(livingStatus.dead);
+  const [run, setRun] = useState(false);
+
+  useEffect(() => {
+    const newIntervalId = setInterval(() => {
+      if (run) {
+        setElements(system.tick().elements);
+      }
+    }, 1000);
+    console.log(newIntervalId);
+
+    for (let i = 1; i < Number(newIntervalId); i++) {
+      window.clearInterval(i);
+    }
+  }, [run]);
 
   const setElements = (elements: Cell[][]) => {
     let newSystem = new System(system.sizeX, system.sizeY, system.elements);
@@ -30,40 +46,23 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <button
-        className="p-2 m-2"
-        onClick={() => {
-          setSystem(new System(10, 45));
-        }}
-      >
-        Reset
-      </button>
-      <button
-        className="p-2 m-2"
-        onClick={() => {
+    <div className="bg-gray-100">
+      <Navbar
+        setActiveElement={setActiveElement}
+        handleTick={() => {
           setElements(system.tick().elements);
         }}
-      >
-        Tick
-      </button>
-      <button
-        className="p-2 m-2"
-        onClick={() => setActiveElement(livingStatus.dead)}
-      >
-        Dead
-      </button>
-      <button
-        className="p-2 m-2"
-        onClick={() => setActiveElement(livingStatus.alive)}
-      >
-        Alive
-      </button>
-      <CellGrid
-        elements={system.elements}
-        setElements={setElements}
-        elementFactory={elementFactory}
-      ></CellGrid>
+        setRun={setRun}
+        run={run}
+        setSystem={setSystem}
+      ></Navbar>
+      <div className="pt-28 px-[5rem] pb-0">
+        <CellGrid
+          elements={system.elements}
+          setElements={setElements}
+          elementFactory={elementFactory}
+        ></CellGrid>
+      </div>
     </div>
   );
 };
