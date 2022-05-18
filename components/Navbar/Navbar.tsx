@@ -24,7 +24,7 @@ function Navbar({
   return (
     <div className="flex flex-col border-b border-black fixed bg-gray-100 w-full top-0">
       <span className="mr-auto fixed font-bold text-gray-900 text-2xl pt-6 pl-5">
-        Conway's Game Of Life
+        Conway&rsquo;s Game Of Life
       </span>
       <div className="flex justify-center">
         <button

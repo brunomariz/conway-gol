@@ -28,6 +28,7 @@ function CellGrid({ elements, setElements, elementFactory }: Props) {
         return elements[row].map((item, column) => {
           return (
             <GridElement
+              key={`${row}${column}`}
               cell={item}
               handleClick={handleClickFactory({ x: row, y: column })}
             ></GridElement>
